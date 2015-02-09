@@ -38,20 +38,29 @@ $include-before$
 $endfor$
 $if(title)$
 <header>
+<h1 class="title">$title$</h1>
+
+$for(author)$
+<h2 class="author">$author.name$</h2>
+<p class="affiliation">$author.affiliation$</p>
+$endfor$
+
 $if(date)$
 <h3 class="date">$date$</h3>
 $endif$
 
-<h1 class="title">$title$</h1>
-
-
-$for(author)$
-<h2 class="author">$author.name$</h2>
-<p class="affilation"><em>$author.affiliation$</em></p>
+$if(also-available)$
+<p class="filenote">
+  Also available as: 
+$for(also-available)$
+  <a href="$also-available.filename$">$also-available.type$</a>$sep$, 
 $endfor$
+</p>
+$endif$
 
 </header>
 $endif$
+
 $if(toc)$
 <nav id="$idprefix$TOC">
 $toc$
@@ -59,11 +68,11 @@ $toc$
 $endif$
 
 $if(abstract)$
-
-<p class="small"><strong>Abstract: </strong><em>$abstract$</em></p>
-
+<section class="small abstract">
+<h3>Abstract</h3>
+  $abstract$
+</section>
 $endif$
-
 
 $body$
 </body>
